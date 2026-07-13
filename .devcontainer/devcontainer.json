@@ -5,5 +5,10 @@
   "runArgs": ["--cap-add=NET_ADMIN"],
   // Applies the DNS allow-list + iptables lockdown on every start.
   "postStartCommand": "bash .devcontainer/egress-lockdown.sh",
-  "remoteUser": "vscode"
+  "remoteUser": "vscode",
+  // Install VS Code extensions
+  "extensions": [
+    "cpmcgrath.codebookmark",
+    "eyssette.vscode-office-viewer"
+  ]
 }
