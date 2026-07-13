@@ -1,4 +1,4 @@
-# Option 1 — In-container egress control for GitHub Codespaces
+# 1 — In-container egress control for GitHub Codespaces
 
 Drop the `.devcontainer/` folder at the root of your repository. On every
 codespace start, egress is restricted to an allow-list.
