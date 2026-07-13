@@ -1,0 +1,9 @@
+{
+  "name": "codespace-egress-controlled",
+  "build": { "dockerfile": "Dockerfile" },
+  // NET_ADMIN is required for the container to manage its own iptables rules.
+  "runArgs": ["--cap-add=NET_ADMIN"],
+  // Applies the DNS allow-list + iptables lockdown on every start.
+  "postStartCommand": "bash .devcontainer/egress-lockdown.sh",
+  "remoteUser": "vscode"
+}
