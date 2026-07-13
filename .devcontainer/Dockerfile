@@ -5,5 +5,7 @@ FROM mcr.microsoft.com/devcontainers/base:ubuntu
 #   iptables - packet-level DNS bypass prevention
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends \
-        dnsmasq iptables ipset dnsutils ca-certificates && \
+        dnsmasq iptables ipset dnsutils ca-certificates \
+        python3 python3-pip python3-venv \
+        nodejs npm && \
     rm -rf /var/lib/apt/lists/*
