@@ -8,5 +8,7 @@
   "remoteUser": "vscode",
   // Install VS Code extensions
   "extensions": [
+    "cpmcgrath.codebookmark",
+    "eyssette.vscode-office-viewer"
   ]
 }
