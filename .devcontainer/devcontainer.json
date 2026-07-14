@@ -9,6 +9,7 @@
   // Install VS Code extensions
   "extensions": [
     "cpmcgrath.codebookmark",
-    "cweijan.vscode-office"
+    "cweijan.vscode-office",
+    "ms-python.debugpy"
   ]
 }
