@@ -1,8 +1,0 @@
-{
-  "extensions.allowedExtensions": [
-    "cweijan.vscode-office"
-  ],
-  "extensions.allowedWorkspaceExtensions": [
-    "cweijan.vscode-office"
-  ]
-}
