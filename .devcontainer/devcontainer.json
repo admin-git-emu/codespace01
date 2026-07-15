@@ -8,6 +8,7 @@
   "remoteUser": "vscode",
   // Install VS Code extensions
   "extensions": [
+    "GitHub.codespaces",
     "cpmcgrath.codebookmark",
     "cweijan.vscode-office",
     "ms-python.debugpy"
