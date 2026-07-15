@@ -3,6 +3,7 @@
 # Option 1 - In-container egress control for GitHub Codespaces.
 #   Layer 1: dnsmasq domain allow-list (see dnsmasq.conf)
 #   Layer 2: iptables to force all DNS through dnsmasq and block DoH bypass
+#   Layer 3: Allow HTTPS (443) for extension downloads from allow-listed domains
 #
 # Invoked automatically by devcontainer.json -> postStartCommand.
 # Requires the NET_ADMIN capability (set via runArgs in devcontainer.json).
@@ -39,4 +40,16 @@ for ip in 1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4 9.9.9.9; do
   sudo iptables -A OUTPUT -p tcp -d "$ip" --dport 443 -j REJECT
 done
 
+# Allow HTTPS (port 443) for extension downloads from allow-listed domains.
+# This includes:
+#   - GitHub (github.com, api.github.com, github.dev)
+#   - VS Code Marketplace and CDNs (marketplace.visualstudio.com, vscode-cdn.azureedge.net, etc)
+#   - Microsoft CDNs (az764295.vo.msecnd.net, download.visualstudio.microsoft.com)
+#   - Package registries (npmjs.org, pypi.org, etc)
+# The DNS allow-list ensures only these domains resolve, so we can safely allow
+# all HTTPS traffic to port 443.
+echo "[egress] allowing HTTPS (port 443) for extension downloads..."
+sudo iptables -A OUTPUT -p tcp --dport 443 -m state --state NEW,ESTABLISHED -j ACCEPT
+
 echo "[egress] lockdown applied. Manage allowed domains in dnsmasq.conf."
+echo "[egress] Extensions can now download from allow-listed domains over HTTPS."
